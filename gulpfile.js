@@ -38,7 +38,6 @@ gulp.task('webserver', function() {
         port: 2333
     });
 });
-gulp.task('run',['clean','default','webserver']);
 gulp.task('run', function(cb) {  
     runSequence('clean', 'default','webserver', cb);
 });
