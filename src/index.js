@@ -109,7 +109,7 @@ function renderBackground(bgDom, minMax) {
     }
     ctx.putImageData(imgData, 0, 0);
 }
-
+var lipstickNow=null;
 function renderDataPoints(lipstickData, minMax) {
     for (var i = 0; i < lipstickData.length; ++i) {
         var coord = getDataCoord(lipstickData[i], minMax);
@@ -155,11 +155,15 @@ function renderDataPoints(lipstickData, minMax) {
             normal(notNormalGroups);
             notNormalGroups = [];
         }
+        var serckkey= lipstickNow.brand.name+lipstickNow.name+lipstickNow.series.name
+        window.open("https://search.jd.com/Search?keyword="+ lipstickNow.brand.name+lipstickNow.name+lipstickNow.series.name);
+        
     });
 }
 
 var lastEmphasisGroup = null;
 var notNormalGroups = [];
+
 function hover(el) {
     // unhover last group
     if ((!el.target || el.target.parent !== lastEmphasisGroup) && notNormalGroups.length) {
@@ -176,7 +180,8 @@ function hover(el) {
 
             var lipstick = group.lipstick;
             var siblings = lipstick.series.lipsticks;
-
+            //点选全局赋值
+            lipstickNow=lipstick;
             for (var i = 0; i < lipstickData.length; ++i) {
                 var l = lipstickData[i];
                 if (l !== lipstick) {
